@@ -1,0 +1,15 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span mat> Angular 7 & Mongo Db Todo List</span>
+    <div class="avtar" [matMenuTriggerFor]="menu">
+      <img href="https://www.mborijnland.nl" target="_blank" class="avtar" class="glostick__user__avatar"
+        src="https://gravatar.com/avatar/fc0783a31dcf29b6ac4775245b71f9af" alt="makerboom@mborijnland.nl" />
+      makerboom@mborijnland.nl
+    </div>
+    <mat-menu #menu="matMenu">
+      <button mat-button-raised routerLink="home" mat-menu-item>
+        <mat-icon>logout</mat-icon> logout
+      </button>
+    </mat-menu>
+  </mat-toolbar-row>
+</mat-toolbar>

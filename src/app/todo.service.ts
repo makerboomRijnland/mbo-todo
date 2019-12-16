@@ -21,7 +21,6 @@ export class TodoService {
   }
 
   delete(id) {
-    id = 1;
-    return this.http.delete(`${this.apiUrl}${id}`);
+    return this.http.delete(`${this.apiUrl}${id}`, this.httpOptions);
   }
 }
