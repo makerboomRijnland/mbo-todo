@@ -1,0 +1,81 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span mat> Angular 7 & Mongo Db Todo List</span>
+    <div class="avtar" [matMenuTriggerFor]="menu">
+      <img
+        href="https://www.mborijnland.nl"
+        target="_blank"
+        class="avtar"
+        class="glostick__user__avatar"
+        src="https://gravatar.com/avatar/fc0783a31dcf29b6ac4775245b71f9af"
+        alt="makerboom@mborijnland.nl"
+      />
+      makerboom@mborijnland.nl
+    </div>
+    <mat-menu #menu="matMenu">
+      <button mat-button-raised mat-menu-item>
+        <mat-icon>logout</mat-icon> logout
+      </button>
+    </mat-menu>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title> </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="todoForm" class="todo-form">
+      <table>
+        <tr>
+          <td>
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="Enter Task"
+                formControlName="task"
+                required
+                name="task"
+              />
+              <mat-error
+                *ngIf="
+                  todoForm.controls.task.invalid &&
+                  (todoForm.controls.task.dirty ||
+                    todoForm.controls.task.touched)
+                "
+              >
+                {{ getErrorMessage() }}
+              </mat-error>
+            </mat-form-field>
+          </td>
+          <td>
+            <button
+              mat-raised-button
+              color="primary"
+              [disabled]="!todoForm.valid"
+              (click)="create()"
+              type="submit"
+            >
+              Create
+            </button>
+          </td>
+        </tr>
+      </table>
+    </form>
+    <mat-divider></mat-divider>
+
+    <mat-list>
+      <h3 mat-subheader>Todos</h3>
+      <mat-list-item *ngFor="let todo of todoList">
+        <mat-icon mat-list-icon>note</mat-icon>
+        <h4 mat-line>{{ todo.task }}</h4>
+        <p mat-line>{{ todo.createdAt | date }}</p>
+        <button mat-icon-button color="warn" (click)="deleteTodoYo(todo._id)">
+          <mat-icon mat-list-icon aria-label="icon-button with a delete icon"
+            >delete</mat-icon
+          >
+        </button>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>
